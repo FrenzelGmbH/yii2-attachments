@@ -90,7 +90,7 @@ class Module extends \yii\base\Module
 
         \Yii::$app->session->close();
 
-        return $userDirPath;
+        return $userDirPath . DIRECTORY_SEPARATOR;
     }
 
     public function getShortClass($obj)
@@ -125,10 +125,8 @@ class Module extends \yii\base\Module
         $fileDirPath = $this->getFilesDirPath($fileHash);
 
         $newFilePath = $fileDirPath . DIRECTORY_SEPARATOR . $newFileName;
-
-        copy($filePath, $newFilePath);
-
-        if (!file_exists($filePath)) {
+        
+        if (!copy($filePath, $newFilePath);) {
             throw new \Exception('Cannot copy file! ' . $filePath . ' to ' . $newFilePath);
         }
 
@@ -160,9 +158,10 @@ class Module extends \yii\base\Module
     public function detachFile($id)
     {
         $file = AppAttachment::findOne(['id' => $id]);
+        if (empty($file)) return false;
         $filePath = $this->getFilesDirPath($file->hash) . DIRECTORY_SEPARATOR . $file->hash . '.' . $file->type;
-        unlink($filePath);
-
-        $file->delete();
+        
+        // the original methods doesn't check for file_exists to be 
+        return file_exists($filePath) ? unlink($filePath) && $file->delete() : $file->delete();
     }
 }
