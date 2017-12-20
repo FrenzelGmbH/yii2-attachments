@@ -3,7 +3,9 @@
 namespace dlds\attachments;
 
 use dlds\attachments\models\AppAttachment;
+use yii\base\Exception;
 use yii\helpers\FileHelper;
+use yii\helpers\ArrayHelper;
 use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module
@@ -13,6 +15,11 @@ class Module extends \yii\base\Module
     public $storePath = '@app/uploads/store';
 
     public $tempPath = '@app/uploads/temp';
+    
+    /**
+    * which patterns for mime are allowed to be attached to the model
+    */
+    public $rules = ['*'];
 
     public function init()
     {
@@ -23,6 +30,7 @@ class Module extends \yii\base\Module
             throw new \Exception('Setup storePath and tempPath in module properties');
         }
 
+        $this->rules = ArrayHelper::merge(['maxFiles' => 3],$this->rules);
         $this->defaultRoute = 'file';
         $this->registerTranslations();
     }
