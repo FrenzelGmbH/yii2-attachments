@@ -28,7 +28,7 @@ class AppAttachment extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%attachment}}';
+        return '{{%attachments}}';
     }
 
     /**
