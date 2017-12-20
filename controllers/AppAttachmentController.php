@@ -15,6 +15,7 @@ class AppAttachmentController extends Controller {
     public function actionUpload()
     {
         $file = UploadedFile::getInstancesByName('file')[0];
+        $file->type = $this->getModule('attachments')->rules;
 
         if ($file->saveAs($this->getModule()->getUserDirPath() . DIRECTORY_SEPARATOR . $file->name))
         {
