@@ -64,4 +64,13 @@ class AppAttachment extends ActiveRecord
     {
         return Url::to(['/attachments/app-attachment/download', 'id' => $this->id]);
     }
+    
+    /**
+    * getPath will return the path of the uploaded file
+    * @return string path
+    */
+    public function getPath()
+    {
+        return $this->getModule()->getFilesDirPath($this->hash) . DIRECTORY_SEPARATOR . $this->hash . '.' . $this->type;
+    }
 }
