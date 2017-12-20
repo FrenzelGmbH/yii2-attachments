@@ -134,7 +134,7 @@ class Module extends \yii\base\Module
 
         $newFilePath = $fileDirPath . DIRECTORY_SEPARATOR . $newFileName;
         
-        if (!copy($filePath, $newFilePath);) {
+        if (!copy($filePath, $newFilePath)) {
             throw new \Exception('Cannot copy file! ' . $filePath . ' to ' . $newFilePath);
         }
 
