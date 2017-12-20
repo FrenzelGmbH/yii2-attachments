@@ -62,7 +62,7 @@ class AppAttachment extends ActiveRecord
 
     public function getUrl()
     {
-        return Url::to(['/attachments/app-attachment/download', 'id' => $this->id]);
+        return Url::to(['/attachment/app-attachment/download', 'id' => $this->id]);
     }
     
     /**
