@@ -131,7 +131,6 @@ class Module extends \yii\base\Module
         $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
         $newFileName = $fileHash . '.' . $fileType;
         $fileDirPath = $this->getFilesDirPath($fileHash);
-
         $newFilePath = $fileDirPath . DIRECTORY_SEPARATOR . $newFileName;
         
         if (!copy($filePath, $newFilePath)) {
@@ -139,7 +138,6 @@ class Module extends \yii\base\Module
         }
 
         $file = new AppAttachment();
-
         $file->name = pathinfo($filePath, PATHINFO_FILENAME);
         $file->model = $this->getShortClass($owner);
         $file->item_id = $owner->id;
