@@ -7,6 +7,7 @@ use dlds\attachments\ModuleTrait;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\UploadedFile;
+use yii\web\Response;
 
 class AppAttachmentController extends Controller {
 
